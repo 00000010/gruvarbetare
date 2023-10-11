@@ -27,7 +27,7 @@ def main():
 #       print(magic.from_file(args.filename))
 #       print(magic.from_file(args.filename, mime = True))
       with open(args.filename, 'rb') as f:
-        matches = rules.match('./tests/testFilePacked')
+        matches = rules.match(args.filename)
         print(matches)
         identify(f)
     except FileNotFoundError:
