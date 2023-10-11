@@ -1,3 +1,7 @@
+#include <stdio.h>
+
 int main() {
- return 0;
+  int i = 2024;
+  printf("%d\n", i);
+  return 0;
 }

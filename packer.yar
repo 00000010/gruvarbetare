@@ -20204,3 +20204,24 @@ rule mumblehard_packer
     condition:
         $decrypt
 }
+
+rule UPX
+{
+    meta:
+        description = "Detects UPX packed executables (comprehensive)"
+        author = "Me"
+        date = "2023-01-01"
+
+    strings:
+        $upx1 = "UPX!"
+        $upx2 = "This file is packed with the UPX executable packer"
+        $upx3 = { 55 50 58 30 } // UPX0 in bytes
+        $upx4 = { 55 50 58 31 } // UPX1 in bytes
+
+    condition:
+        (2 of ($upx*)) /*or
+        ((uint32(0) == 0x5A4D) and  // MZ signature
+         for any i in (0..pe.number_of_sections-1): ($upx3 at pe.sections[i].name or
+                                                    $upx4 at pe.sections[i].name))*/
+}
+
