@@ -6,7 +6,7 @@ import magic
 import yara
 
 def identify(f):
-    print("Identifying")
+  print("Identifying")
 #  while (byte := f.read(1)):
 #    print(byte)
   return
