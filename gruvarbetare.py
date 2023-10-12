@@ -88,6 +88,8 @@ def main():
           print(m)
       else:
         more(args.filename)
+        print(matches)
+        identify(f)
     except FileNotFoundError:
       print("Error: file does not exist.")
       return
