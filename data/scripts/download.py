@@ -4,19 +4,17 @@ from os import listdir
 from os.path import isfile, join
 import process_module
 
-def get_processed_hashes(processed_hashes_path):
+def get_hashes(processed_hashes_path):
   hashes = set()
   with open(processed_hashes_path, 'r') as processed_hashes_file:
     hashes.add(processed_hashes_file.readline())
   return hashes
 
 def main():
-  csv = 'full.csv'
   print("Reading in hashes...")
-  data_df = pd.read_csv(csv)
+  all_hashes = get_hashes('./all_hashes.txt')
+  processed_hashes = get_hashes('./processed_hashes.txt')
   print("Done.")
-  hashes = data_df['sha256_hash']
-  processed_hashes = get_processed_hashes('./hashes.txt')
   api_url = 'https://mb-api.abuse.ch/api/v1/'
   params = { "query": "get_file", "sha256_hash": "" }
   samplesPath = "./downloaded"
