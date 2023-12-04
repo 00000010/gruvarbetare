@@ -52,7 +52,7 @@ def main():
       processed_hashes_file.write(h + "\n")
 
       # If 100 sample zip files have been downloaded, pause downloading to save on space and process them
-      if count > 20:
+      if count > 100:
         # Also ask user to disconnect from the internet, for safety while processing malware samples
         print("Pausing. Please disconnect from the internet to continue processing.")
         userInput = input("Type 'disconnected' once you have done so.\n")
@@ -74,7 +74,6 @@ def main():
           userInput = input("Type 'connected' once you have done so.\n")
 
         count = 0
-        return
       
       count = count + 1
   return  
